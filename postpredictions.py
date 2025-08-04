@@ -23,14 +23,14 @@ def init_gcs_client():
         raise ValueError("❌ GCS_KEY_JSON не установлена или пуста")
 
     # Преобразуем строку из .env обратно в словарь
-  key_dict = json.loads(key_str)
+    key_dict = json.loads(key_str)
 
-  # Сохраняем как файл
-  with open("gcs_key.json", "w") as f:
-      json.dump(key_dict, f)
+    # Сохраняем как файл
+    with open("gcs_key.json", "w") as f:
+        json.dump(key_dict, f)
 
-  os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "gcs_key.json"
-  return storage.Client()
+    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "gcs_key.json"
+    return storage.Client()
 
 # === Загрузка JSON из GCS ===
 def gcs_load_json(bucket_name, gcs_path):
