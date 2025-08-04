@@ -18,7 +18,7 @@ WEBHOOK = os.getenv("WEBHOOK")
 # === Преобразуем строку JSON в dict и исправляем переносы строк ===
 def init_gcs_client():
     key_str = os.getenv("GCS_KEY_JSON")
-    print(key_str)
+
     if not key_str:
         raise ValueError("❌ GCS_KEY_JSON не установлена или пуста")
 
