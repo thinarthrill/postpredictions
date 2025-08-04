@@ -110,36 +110,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-from google.cloud import storage
-import json
-
-def gcs_load_json(filename):
-    try:
-        client = storage.Client.from_service_account_json("gcs_key.json")  # путь к ключу
-        bucket = client.bucket(BUCKET)  # твой bucket
-        blob = bucket.blob(filename)
-        data = blob.download_as_text()
-        return json.loads(data)
-    except Exception as e:
-        print(f"⚠ Ошибка загрузки {filename} из GCS: {e}")
-        return None
-
-gcs_load_json("predictions.json")
-
-from google.cloud import storage
-
-def gcs_debug(filename):
-    try:
-        client = storage.Client.from_service_account_json("gcs_key.json")
-        bucket = client.bucket(BUCKET)
-        blob = bucket.blob(filename)
-        raw_data = blob.download_as_text()
-        print("=== RAW DATA ===")
-        print(raw_data[:500])  # первые 500 символов
-        print("=== TYPE ===", type(raw_data))
-    except Exception as e:
-        print(f"Ошибка: {e}")
-
-gcs_debug("posted_today.json")
-
