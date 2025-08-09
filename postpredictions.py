@@ -9,8 +9,8 @@ from google.cloud import storage
 import requests
 
 # === Настройки ===
-PREDICTIONS_FILE = "postpredictions/predictions.json"
-POSTED_FILE = "postpredictions/posted_today.json"
+PREDICTIONS_FILE = os.getenv("PREDICTIONS_FILE")
+POSTED_FILE = os.getenv("POSTED_FILE")
 BUCKET = os.getenv("BUCKET")
 WEBHOOK = os.getenv("WEBHOOK")
 
